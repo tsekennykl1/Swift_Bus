@@ -118,7 +118,7 @@ class BusStore: ObservableObject{
                 self.routeDetail.append(routeDetail)
             }
       }
-        let keysAndValues = self.busStopDictByCode.values.map { ($0.name_tc, [$0]) }
+        let keysAndValues = self.busStopDictByCode.values.map { ($0.stopName, [$0]) }
          let busStopDict = Dictionary(keysAndValues, uniquingKeysWith: { $0 + $1 })
         self.busStopDictByName = busStopDict
     }
@@ -181,7 +181,7 @@ class BusStore: ObservableObject{
     }
     
     func getBusStopName(stopCode: String) -> String {
-        return self.busStopDictByCode[stopCode]?.name_tc ?? ""
+        return self.busStopDictByCode[stopCode]?.stopName ?? ""
     }
     
     func getRouteKey(routeData: RouteData)->String{
@@ -194,6 +194,6 @@ class BusStore: ObservableObject{
     
     func getRouteInfo(routeKey: String) -> (orig: String, dest: String){
         let route = self.busRouteDict[routeKey]
-        return(route?.orig_tc ?? "",route?.dest_tc ?? "")
+        return(route?.orig ?? "",route?.dest ?? "")
     }
 }

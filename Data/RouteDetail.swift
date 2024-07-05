@@ -20,6 +20,24 @@ struct RouteDetail : Identifiable{
     let dest_sc : String
     var seqData = [RouteStopData?]()
     
+    var dest:String {
+        let lang = LocalizationManager.shared.language
+        switch lang{
+            case .english: return dest_en
+            case .t_chinese: return dest_tc
+            case .s_chinese: return dest_sc
+        }
+    }
+    
+    var orig:String {
+        let lang = LocalizationManager.shared.language
+        switch lang{
+            case .english: return orig_en
+            case .t_chinese: return orig_tc
+            case .s_chinese: return orig_sc
+        }
+    }
+    
     init(route: RouteData, routeStop: [RouteStopData]){
         self.id = route.id
         self.co = route.co
@@ -40,7 +58,7 @@ struct RouteDetail : Identifiable{
     }
     
     func toHeader() -> String {
-        return "\(route) - \(orig_tc)->\(dest_tc)"
+        return "\(route) - \(orig)->\(dest)"
     }
 }
 

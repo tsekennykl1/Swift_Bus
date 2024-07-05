@@ -85,15 +85,16 @@ struct StopEtaData: BusData , Codable, Identifiable{
     }
     
     func toStr() -> String {
+        let lang = LocalizationManager.shared.language
         var eta_rmk_str = ""
         if eta != nil{
             let etaTime = Calendar.current.dateComponents([.hour, .minute, .second], from:Date() ,to:ISO8601DateFormatter().date(from: eta!)! )
-            eta_rmk_str = "\n\t\(etaTime.hour!) hr \(etaTime.minute!) min \(etaTime.second!) sec"
+            eta_rmk_str = "\n\t\(etaTime.hour!) hr \(etaTime.minute!) min \(etaTime.second!) sec".localized(lang)
         }
         if rmk_tc != "" {
             eta_rmk_str += " - \(rmk_tc!)"
         }
-        return "\(route): \(dir=="O" ? "從" : "到") \(dest_tc) \(dir=="O" ? "出發" : "總站")  \(eta_rmk_str)"
+        return "\(route): \(dir=="O" ? "從" : "到") \(dest_tc) \(dir=="O" ? "出發" : "總站")  \(eta_rmk_str)".localized(lang)
     }
     func toRoute() -> String{
         return "\(route),\(dir),\(String(service_type))"

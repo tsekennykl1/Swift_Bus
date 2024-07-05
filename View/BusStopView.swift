@@ -15,7 +15,7 @@ struct SubBusStopView : View {
     var body: some View {
         HStack{
             NavigationLink {
-                BusStopEtaView(stopName: displayStopList.first!.name_tc , stopCode: displayStopList.map{$0.stop})
+                BusStopEtaView(stopName: displayStopList.first!.stopName , stopCode: displayStopList.map{$0.stop})
             } label: {
                 Text(displayStopList.first!.toStr())
             }
@@ -24,6 +24,7 @@ struct SubBusStopView : View {
 }
 
 struct BusStopView: View {
+    @AppStorage("selectedLanguage") private var language = LocalizationManager.shared.language
     @ObservedObject var stopViewModel = StopViewModel()
     @EnvironmentObject var store : BusStore
     @EnvironmentObject var locManager : LocationManager
@@ -35,34 +36,43 @@ struct BusStopView: View {
     
     var body: some View {
         let displayStopTuples = stopViewModel.getStopListByName(stopDict: store.busStopDictByCode, locManager: locManager)
-        HStack {
-            TextField("Enter Search Text", text: $stopViewModel.searchText)
-                .padding(.horizontal, 40)
-                .frame(width: UIScreen.main.bounds.width - 30, height: 45, alignment: .leading)
-                .background(Color(#colorLiteral(red: 0.9, green: 0.9, blue: 0.9, alpha: 1)))
-                .clipped()
-                .cornerRadius(10)
-                .overlay(
-                    HStack {
-                        Image(systemName: "magnifyingglass")
-                            .foregroundColor(.gray)
-                            .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
-                            .padding(.leading, 16)
-                    })
-            Spacer()
-        }.padding()
-        //Text("Current Location: (\(locManager.location.lat),\(locManager.location.long))")
-        List{
-            if(stopViewModel.searchText.count < 1){
-                ForEach(displayStopTuples, id:\.0){ item in
-                    SubBusStopView(displayStopList: item.1)
+        VStack{
+            HStack {
+                TextField("Enter Search Text".localized(language), text: $stopViewModel.searchText)
+                    .padding(.horizontal, 40)
+                    .frame(width: UIScreen.main.bounds.width - 30, height: 45, alignment: .leading)
+                    .background(Color(#colorLiteral(red: 0.9, green: 0.9, blue: 0.9, alpha: 1)))
+                    .clipped()
+                    .cornerRadius(10)
+                    .overlay(
+                        HStack {
+                            Image(systemName: "magnifyingglass")
+                                .foregroundColor(.gray)
+                                .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                                .padding(.leading, 16)
+                        })
+                Spacer()
+            }.padding()
+            //Text("Current Location: (\(locManager.location.lat),\(locManager.location.long))")
+            List{
+                if(stopViewModel.searchText.count < 1){
+                    ForEach(displayStopTuples, id:\.0){ item in
+                        SubBusStopView(displayStopList: item.1)
+                    }
+                } else{
+                    SubBusStopView(displayStopList: stopViewModel.searchedStop.sorted(by: {locManager.distDiff($0.lat,$0.long) < locManager.distDiff($1.lat,$1.long)}))
                 }
-            } else{
-                SubBusStopView(displayStopList: stopViewModel.searchedStop.sorted(by: {locManager.distDiff($0.lat,$0.long) < locManager.distDiff($1.lat,$1.long)}))
+            }
+        }.background {
+            GeometryReader { geometry in
+                Color.clear.preference(
+                    key: SizePreferenceKey.self,
+                    value: geometry.size
+                )
             }
         }.onAppear(perform: {
             stopViewModel.setStopVM(stopDict: store.busStopDictByCode)
-        }).navigationTitle("所有巴士站")
+        }).navigationTitle("All Bus Stops")
             .navigationBarTitleDisplayMode(.inline)
     }
 }
@@ -104,7 +114,7 @@ class StopViewModel: ObservableObject {
     }
     
     func getStopListByName(stopDict: Dictionary<String,StopData>, locManager: LocationManager)-> [(String,[StopData])]{
-        let keysAndValues = stopDict.values.sorted(by: {locManager.distDiff($0.lat, $0.long) < locManager.distDiff($1.lat, $1.long)}).map{ ($0.name_tc, [$0])}
+        let keysAndValues = stopDict.values.sorted(by: {locManager.distDiff($0.lat, $0.long) < locManager.distDiff($1.lat, $1.long)}).map{ ($0.stopName, [$0])}  //Further check
         let newDict = OrderedDictionary<String, [StopData]>(keysAndValues, uniquingKeysWith: { $0 + $1 })
         var returnTuple = [(String,[StopData])]()
         newDict.forEach{ key, value in

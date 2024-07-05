@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct LaunchingView: View {
-    @StateObject var toDoStore = TodosStore()
-    @StateObject var store = BusStore()
-    @StateObject var locManager = LocationManager()
+    @EnvironmentObject var store : BusStore
     var body: some View {
         NavigationStack{
             NavigationView {
@@ -18,7 +16,7 @@ struct LaunchingView: View {
                     ProgressView(label: {
                         Text(store.isRouteStopDataCompleted ? "Done" : "Loading BusStop data.......")
                     }).progressViewStyle(CircularProgressViewStyle(tint: .blue))
-                    .scaleEffect(2.0, anchor: .center)
+                    .scaleEffect(1.5, anchor: .center)
                 }
             }.navigationDestination(isPresented: $store.isStopDataCompleted){
                 LoadRouteView()}
@@ -26,12 +24,9 @@ struct LaunchingView: View {
             .onAppear(perform: {
                 store.setupStopView()
             })
-        }.environmentObject(store)
-        .environmentObject(toDoStore)
-        .environmentObject(locManager)
+        }
     }
 }
-
 
 struct LoadRouteView: View {
     @EnvironmentObject var store : BusStore
@@ -40,7 +35,7 @@ struct LoadRouteView: View {
             ProgressView(label: {
                 Text(store.isRouteDataCompleted ? "Done" : "Loading Route data.......")
             }).progressViewStyle(CircularProgressViewStyle(tint: .blue))
-            .scaleEffect(2.0, anchor: .center)
+            .scaleEffect(1.5, anchor: .center)
         }.task {
             store.setupRouteView()
         }
@@ -58,7 +53,7 @@ struct LoadRouteStopView: View {
             ProgressView(label: {
                 Text(store.isRouteStopDataCompleted ? "Done" : "Loading RouteStop data.......")
             }).progressViewStyle(CircularProgressViewStyle(tint: .blue))
-            .scaleEffect(2.0, anchor: .center)
+            .scaleEffect(1.5, anchor: .center)
         }.task {
             store.setupRouteStopView()
         }

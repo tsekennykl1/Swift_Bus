@@ -4,10 +4,35 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Swift_Bus 1.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>0</integer>
+		</dict>
 		<key>Swift_Bus.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>1</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>0E3CF0892BE47F4500F5D785</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>0E3CF09E2BE47F4800F5D785</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>0E3CF0A82BE47F4800F5D785</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

@@ -8,6 +8,7 @@ import Foundation
 struct K {
     struct ApiKeys{
         static let omdbIdKey = "198f0849"
+        static let Google = "AIzaSyDkKGNe1WhfBGhmxDynyciYXrKT8oE2IyY"
     }
     struct Urls{
         static let baseURL = "https://data.etabus.gov.hk/v1/transport/kmb"

@@ -33,8 +33,13 @@
 		0E5CE9382BFDA06600761526 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5CE9372BFDA06600761526 /* HomeView.swift */; };
 		0E5CE9542BFDE5DF00761526 /* BusRouteStopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5CE9532BFDE5DF00761526 /* BusRouteStopView.swift */; };
 		0E848A572C22C9F700049665 /* LaunchingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E848A562C22C9F700049665 /* LaunchingView.swift */; };
+		0E8553252C34F8A800DDB158 /* GoogleMaps in Frameworks */ = {isa = PBXBuildFile; productRef = 0E8553242C34F8A800DDB158 /* GoogleMaps */; };
+		0E8553292C354D5200DDB158 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 0E8553282C354D5200DDB158 /* Localizable.xcstrings */; };
 		0E95F68F2C1AF0C700A54475 /* BusAPIAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E95F68E2C1AF0C700A54475 /* BusAPIAgent.swift */; };
 		0EAA75302C0FF2170092A477 /* BusStopEtaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EAA752F2C0FF2170092A477 /* BusStopEtaView.swift */; };
+		0EC6A8B62C3691B900528672 /* LocalizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC6A8B52C3691B900528672 /* LocalizationManager.swift */; };
+		0EC6A8B82C37A17600528672 /* HeightPreservingTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC6A8B72C37A17500528672 /* HeightPreservingTabView.swift */; };
+		0EC6A8BA2C37CA8700528672 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC6A8B92C37CA8700528672 /* View+Extension.swift */; };
 		0EFA76E42C2702CE00CD1221 /* RouteDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EFA76E32C2702CE00CD1221 /* RouteDetail.swift */; };
 		0EFA76E62C272A3100CD1221 /* BusRouteDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EFA76E52C272A3100CD1221 /* BusRouteDetailView.swift */; };
 		0EFA76E82C2A6FAA00CD1221 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EFA76E72C2A6FAA00CD1221 /* LocationManager.swift */; };
@@ -88,8 +93,12 @@
 		0E5CE9372BFDA06600761526 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		0E5CE9532BFDE5DF00761526 /* BusRouteStopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusRouteStopView.swift; sourceTree = "<group>"; };
 		0E848A562C22C9F700049665 /* LaunchingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchingView.swift; sourceTree = "<group>"; };
+		0E8553282C354D5200DDB158 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		0E95F68E2C1AF0C700A54475 /* BusAPIAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusAPIAgent.swift; sourceTree = "<group>"; };
 		0EAA752F2C0FF2170092A477 /* BusStopEtaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStopEtaView.swift; sourceTree = "<group>"; };
+		0EC6A8B52C3691B900528672 /* LocalizationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationManager.swift; sourceTree = "<group>"; };
+		0EC6A8B72C37A17500528672 /* HeightPreservingTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeightPreservingTabView.swift; sourceTree = "<group>"; };
+		0EC6A8B92C37CA8700528672 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 		0EFA76E32C2702CE00CD1221 /* RouteDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDetail.swift; sourceTree = "<group>"; };
 		0EFA76E52C272A3100CD1221 /* BusRouteDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusRouteDetailView.swift; sourceTree = "<group>"; };
 		0EFA76E72C2A6FAA00CD1221 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
@@ -100,6 +109,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E8553252C34F8A800DDB158 /* GoogleMaps in Frameworks */,
 				0EFA76EB2C2AD3A000CD1221 /* Collections in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -139,6 +149,7 @@
 			children = (
 				0E5CE9332BF34EDD00761526 /* String+Extension.swift */,
 				0E3019F12C12FCD100E1DAC3 /* RandomAccessCollection+Extension.swift */,
+				0EC6A8B92C37CA8700528672 /* View+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -146,6 +157,7 @@
 		0E3CF0812BE47F4500F5D785 = {
 			isa = PBXGroup;
 			children = (
+				0E8553282C354D5200DDB158 /* Localizable.xcstrings */,
 				0E3019E62C12ECC400E1DAC3 /* Extension */,
 				0E3019E52C12ECB200E1DAC3 /* Data */,
 				0E3CF0C92BE4940300F5D785 /* Services */,
@@ -221,6 +233,7 @@
 				0E3CF0962BE47F4800F5D785 /* Persistence.swift */,
 				0E95F68E2C1AF0C700A54475 /* BusAPIAgent.swift */,
 				0EFA76E72C2A6FAA00CD1221 /* LocationManager.swift */,
+				0EC6A8B52C3691B900528672 /* LocalizationManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -237,6 +250,7 @@
 				0E848A562C22C9F700049665 /* LaunchingView.swift */,
 				0E3019F52C12FD8700E1DAC3 /* TodosView.swift */,
 				0EFA76E52C272A3100CD1221 /* BusRouteDetailView.swift */,
+				0EC6A8B72C37A17500528672 /* HeightPreservingTabView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -259,6 +273,7 @@
 			name = Swift_Bus;
 			packageProductDependencies = (
 				0EFA76EA2C2AD3A000CD1221 /* Collections */,
+				0E8553242C34F8A800DDB158 /* GoogleMaps */,
 			);
 			productName = Swift_Bus;
 			productReference = 0E3CF08A2BE47F4500F5D785 /* Swift_Bus.app */;
@@ -334,6 +349,7 @@
 			mainGroup = 0E3CF0812BE47F4500F5D785;
 			packageReferences = (
 				0EFA76E92C2AD3A000CD1221 /* XCRemoteSwiftPackageReference "swift-collections" */,
+				0E8553232C34F8A800DDB158 /* XCRemoteSwiftPackageReference "ios-maps-sdk" */,
 			);
 			productRefGroup = 0E3CF08B2BE47F4500F5D785 /* Products */;
 			projectDirPath = "";
@@ -353,6 +369,7 @@
 			files = (
 				0E3CF0952BE47F4800F5D785 /* Preview Assets.xcassets in Resources */,
 				0E3CF0922BE47F4800F5D785 /* Assets.xcassets in Resources */,
+				0E8553292C354D5200DDB158 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -387,15 +404,18 @@
 				0E3019EE2C12EE4600E1DAC3 /* BusStopEtaData.swift in Sources */,
 				0E5CE9322BEE07DB00761526 /* BusStopView.swift in Sources */,
 				0E848A572C22C9F700049665 /* LaunchingView.swift in Sources */,
+				0EC6A8B62C3691B900528672 /* LocalizationManager.swift in Sources */,
 				0EFA76E62C272A3100CD1221 /* BusRouteDetailView.swift in Sources */,
 				0E3019E42C10589700E1DAC3 /* BusEtaDetailView.swift in Sources */,
 				0EFA76E82C2A6FAA00CD1221 /* LocationManager.swift in Sources */,
+				0EC6A8BA2C37CA8700528672 /* View+Extension.swift in Sources */,
 				0E5CE9342BF34EDD00761526 /* String+Extension.swift in Sources */,
 				0E5CE9362BFD953D00761526 /* BusRouteView.swift in Sources */,
 				0E3019E82C12ECEA00E1DAC3 /* BusStopData.swift in Sources */,
 				0E95F68F2C1AF0C700A54475 /* BusAPIAgent.swift in Sources */,
 				0E3CF0CF2BE494FC00F5D785 /* Store.swift in Sources */,
 				0E3019F02C12EE9800E1DAC3 /* BusEtaDetailData.swift in Sources */,
+				0EC6A8B82C37A17600528672 /* HeightPreservingTabView.swift in Sources */,
 				0E3CF08E2BE47F4500F5D785 /* Swift_BusApp.swift in Sources */,
 				0E5CE9542BFDE5DF00761526 /* BusRouteStopView.swift in Sources */,
 				0E3019F62C12FD8700E1DAC3 /* TodosView.swift in Sources */,
@@ -566,9 +586,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Swift_Bus/Preview Content\"";
-				DEVELOPMENT_TEAM = CKESP3MPW2;
+				DEVELOPMENT_TEAM = 5C38RKT2QV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We would like to access your GPS to find out your nearest Bus Stops";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -595,9 +616,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Swift_Bus/Preview Content\"";
-				DEVELOPMENT_TEAM = CKESP3MPW2;
+				DEVELOPMENT_TEAM = 5C38RKT2QV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We would like to access your GPS to find out your nearest Bus Stops";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -734,6 +756,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		0E8553232C34F8A800DDB158 /* XCRemoteSwiftPackageReference "ios-maps-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googlemaps/ios-maps-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
 		0EFA76E92C2AD3A000CD1221 /* XCRemoteSwiftPackageReference "swift-collections" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/apple/swift-collections.git";
@@ -745,6 +775,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		0E8553242C34F8A800DDB158 /* GoogleMaps */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0E8553232C34F8A800DDB158 /* XCRemoteSwiftPackageReference "ios-maps-sdk" */;
+			productName = GoogleMaps;
+		};
 		0EFA76EA2C2AD3A000CD1221 /* Collections */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 0EFA76E92C2AD3A000CD1221 /* XCRemoteSwiftPackageReference "swift-collections" */;

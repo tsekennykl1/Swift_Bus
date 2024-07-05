@@ -71,6 +71,7 @@ struct BusStopData: BusData , Codable{
 }
 
 struct StopData: BusData , Codable, Identifiable{
+    
     let id : String
     let stop : String
     let name_en: String
@@ -79,6 +80,15 @@ struct StopData: BusData , Codable, Identifiable{
     let lat : Double
     let long : Double
     let data_timeStamp : String?
+    
+    var stopName:String {
+        switch LocalizationManager.shared.language{
+            case .english: return name_en
+        case .t_chinese: return name_tc
+        case .s_chinese: return name_sc
+        }
+        
+    }
     
     init(stop: String, name_en: String,name_tc: String,name_sc: String, lat : Double, long: Double, data_timeStamp: String){
         self.stop = stop
@@ -113,10 +123,10 @@ struct StopData: BusData , Codable, Identifiable{
     }
 
     func toStr() -> String {
-        return name_tc
+        return stopName
     }
     
     func toBusStop() -> (String,String){
-        return (stop,name_tc)
+        return (stop,stopName)
     }
 }

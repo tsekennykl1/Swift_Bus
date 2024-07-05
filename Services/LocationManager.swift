@@ -6,18 +6,20 @@
 //
 import Foundation
 import MapKit
+import GoogleMaps
 
 final class LocationManager: NSObject, ObservableObject {
     private let locationManager = CLLocationManager()
     
     @Published var region = MKCoordinateRegion()
     @Published var location : (lat: Double, long: Double)=(K.Location.lat,K.Location.long)
-    
+    @Published var locationLabel = ""
     override init() {
         super.init()
         self.locationManager.delegate = self
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
                 self.setup()
+        GMSServices.provideAPIKey(K.ApiKeys.Google)
     }
 
     private func setup() {
@@ -59,8 +61,22 @@ extension LocationManager: CLLocationManagerDelegate {
             )
             location.lat = $0.coordinate.latitude
             location.long = $0.coordinate.longitude
-        }
+            
+            
+            
+            //DispatchQueue.main.async {
+                let geoCoder = GMSGeocoder()
+                geoCoder.reverseGeocodeCoordinate(($0.coordinate), completionHandler:
+                                                    {
+                    reverseGeoCodeResponse, error in
+                    if let displayLocation = reverseGeoCodeResponse?.results()?.first {
+                        let address = displayLocation.lines?.first!
+                        //let thoroughfare = displayLocation.thoroughfare!
+                        //let adminArea = displayLocation.administrativeArea!
+                        self.locationLabel = "\(address ?? "")"
+                    }
+                })
+            }
+        //}
     }
-    
-    
 }

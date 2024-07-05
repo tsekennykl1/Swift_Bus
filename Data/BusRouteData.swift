@@ -76,6 +76,7 @@ struct BusRouteData: BusData , Codable{
 }
 
 struct RouteData: BusData, Codable, Identifiable {
+    
     let co : String?
     let route: String
     let bound: String
@@ -87,6 +88,22 @@ struct RouteData: BusData, Codable, Identifiable {
     let dest_tc : String
     let dest_sc : String
     let data_timeStamp : String?
+        
+    var dest:String {
+        switch LocalizationManager.shared.language{
+            case .english: return dest_en
+            case .t_chinese: return dest_tc
+            case .s_chinese: return dest_sc
+        }
+    }
+    
+    var orig:String {
+        switch LocalizationManager.shared.language{
+            case .english: return orig_en
+            case .t_chinese: return orig_tc
+            case .s_chinese: return orig_sc
+        }
+    }
     
     var id : String {
         return "\(self.route)-\(self.bound)-\(self.service_type)".trimOptional()
@@ -135,6 +152,6 @@ struct RouteData: BusData, Codable, Identifiable {
     }
     
     func toStr() -> String {
-        return "\(route) - \(orig_tc)->\(dest_tc)"
+        return "\(route) - \(orig)->\(dest)"
     }
 }

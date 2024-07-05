@@ -8,11 +8,14 @@
 import Foundation
 import SwiftUI
 import _MapKit_SwiftUI
+import GoogleMaps
 
 struct HomeView: View {
 //    @Environment(\.managedObjectContext) private var viewContext
     //@StateObject var toDoStore = TodosStore()
 //    @StateObject var store = Store(state: AppState())
+    @AppStorage("selectedLanguage") private var language = LocalizationManager.shared.language
+    @State(initialValue: "en") var lang: String
     @EnvironmentObject var store : BusStore
     @EnvironmentObject var toDoStore : TodosStore
     @EnvironmentObject var locManager : LocationManager
@@ -22,82 +25,76 @@ struct HomeView: View {
 //        sortDescriptors: [NSSortDescriptor(keyPath: \Stop.stop, ascending: true)],
 //        animation: .default)
 //    private var items: FetchedResults<Stop>
-        
+    @State private var contentSize: CGSize = .zero
     
     var body: some View {
         //NavigationView {
+        
+        VStack {
+            // Text("Location: (\(locManager.location.lat),\(locManager.location.long))".localized(language))
+            // Text("Your current location is".localized(language))
             
-            VStack {
-                NavigationLink {
-                    BusRouteView()
-                } label: {
-                    Text("Bus Route")
-                }
+            TabView{
                 
-                NavigationLink {
-                    BusStopView()
-                } label: {
-                    Text("Bus Stop")
-                }
-                
-                NavigationLink {
-                    BusRouteStopView(route: "1A", selectedRouteStr: "1A 尖沙咀碼頭 -> 中秀戊坪", direction: "O", service_type: "1")
-                } label: {
-                    Text("Bus Route Stop")
-                }
-                NavigationLink {
-                    BusStopEtaView(stopName: "九龍灣", stopCode: ["8C09B3648DCDAF3C"])
-                } label: {
-                    Text("Bus Stop ETA")
-                }
-                NavigationLink {
-                 
-                    BusEtaDetailView(stopName: "九龍灣", stopCode: "8C09B3648DCDAF3C", route: "17", service_type: "1")
-                } label: {
-                    Text("Bus ETA Detail")
-                }
-                NavigationLink {
-                 
-                    BusRouteDetailView()
-                } label: {
-                    Text("Bus Route Detail")
-                }
-                NavigationLink {
-                    TodosView()
-                } label: {
-                    Text("Bus Plan")
-                }
-                Text("Location: (\(locManager.location.lat),\(locManager.location.long))")
-//                Map(coordinateRegion: $manager.region, showsUserLocation: true)
-//                            .edgesIgnoringSafeArea(.all)
+                //  ZStack{
+                BusRouteView().tabItem {
+                    NavigationLink(destination: BusRouteView()){
+                        //                    TodosView().tabItem {
+                        //                        NavigationLink(destination: TodosView()){
+                        Image(systemName: "bus.doubledecker")
+                        Text("Bus Route".localized(language))
+                    }.tag(1)
+                }.getSizeOfView { contentSize = $0 }
+                    .padding(.horizontal)
+                BusStopView().tabItem {
+                    NavigationLink(destination: BusStopView()){
+                        //                    TodosView().tabItem {
+                        //                        NavigationLink(destination: TodosView()){
+                        Image(systemName: "figure.wave")
+                        Text("Bus Stop".localized(language))
+                    }.tag(2)
+                }.getSizeOfView { contentSize = $0 }
+                    .padding(.horizontal)
+                BusRouteDetailView().tabItem {
+                    NavigationLink(destination: BusRouteDetailView()){
+                        //                    TodosView().tabItem {
+                        //                        NavigationLink(destination: TodosView()){
+                        Image(systemName: "info.windshield")
+                        Text("Bus Route Detail".localized(language))
+                    }.tag(3)
+                }.getSizeOfView { contentSize = $0 }
+                    .padding(.horizontal)
+                //  }
             }
-            .task {
+            //.frame(minHeight: 80, idealHeight: contentSize.height)
+            //    .tabViewStyle(.page(indexDisplayMode: .never))
+        }.task {
                 store.setupDetail()
-                //store.setupRouteView()
-                //store.setupRouteStopView()
-                
-                
-            }.navigationBarBackButtonHidden(true)
+        }.navigationBarBackButtonHidden(true)
             //.onDelete(perform: deleteItems)
-            
-            
-            // Button("Bus Stops", action: {BusStopView()})
-            //Button("Bus Routes", action: {BusRouteView()})
-        //.environmentObject(toDoStore)
-        //    .environmentObject(store)
+            .environment(\.locale, .init(identifier: lang))
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
-                EditButton()
+                //EditButton()
+                if (LocalizationManager.shared.language == .english){
+                    Button("Chi") {
+                        LocalizationManager.shared.language = .t_chinese
+                    }.foregroundColor(.blue)
+                } else {
+                    Button("Eng") {
+                        LocalizationManager.shared.language = .english
+                    }.foregroundColor(.blue)
+                }
             }
             ToolbarItem {
                 Button(action: addItem) {
-                    Label("Add Item", systemImage: "plus")
+                    //Label("Add Item", systemImage: "plus")
+                    TodosView()
                 }
             }
         }
     }
     
-
     private func addItem() {
         withAnimation {
             let newItem = Item(context: viewContext)

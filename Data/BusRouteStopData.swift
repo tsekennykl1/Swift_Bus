@@ -124,7 +124,8 @@ struct RouteStopData: BusData , Codable, Identifiable{
     }
     
     func toStr() -> String {
-        return "\(route)(\(bound=="O" ? "outbound" : "inbound")) \(seq). \(stopName)"
+        let lang = LocalizationManager.shared.language
+        return "\(route)(\(bound=="O" ? "outbound" : "inbound")) \(seq). \(stopName)".localized(lang)
     }
     
     func toSeqRow() -> String {
